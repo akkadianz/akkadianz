@@ -1,0 +1,216 @@
+@import './fonts.css';
+
+:root {
+  --bg: #05080f;
+  --text: #eaeaea;
+  --muted: #9aa0a6;
+  --accent: #1e90ff;
+  --accent-hover: #1873cc;
+  --pink: #ff1493;
+  --cyan: #00d4ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: var(--leading);
+  font-size: var(--fs-base);
+}
+
+/* Events Main */
+.events-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 28px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Events Hero */
+.events-hero {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
+}
+
+.accent-line {
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  animation: line-grow 0.8s ease-out 0.3s forwards;
+}
+
+@keyframes line-grow {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.section-subtitle {
+  font-size: var(--fs-lead);
+  color: var(--muted);
+  margin-top: 20px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+/* Events Grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+.event-card {
+  padding: 28px;
+  background: rgba(30, 144, 255, 0.05);
+  border: 1px solid rgba(30, 144, 255, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(0, 212, 255, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.event-card:hover {
+  border-color: rgba(30, 144, 255, 0.5);
+  background: rgba(30, 144, 255, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(30, 144, 255, 0.2);
+}
+
+.event-card:hover::before {
+  opacity: 1;
+}
+
+.event-header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 16px;
+}
+
+.event-card h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sci-fi-accent {
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pink), transparent);
+  margin-top: 8px;
+  width: 40px;
+}
+
+.event-description {
+  font-size: var(--fs-base);
+  color: var(--muted);
+  margin-bottom: 16px;
+  line-height: var(--leading);
+  position: relative;
+  z-index: 2;
+}
+
+.event-details {
+  list-style: none;
+  font-size: 14px;
+  color: var(--muted);
+  position: relative;
+  z-index: 2;
+}
+
+.event-details li {
+  margin-bottom: 6px;
+}
+
+/* Events Info */
+.events-info {
+  text-align: center;
+}
+
+.events-info h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  margin-bottom: 40px;
+}
+
+.info-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.info-box {
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(30, 144, 255, 0.08), rgba(255, 20, 147, 0.05));
+  border: 1px solid rgba(30, 144, 255, 0.3);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.info-box:hover {
+  background: linear-gradient(135deg, rgba(30, 144, 255, 0.15), rgba(255, 20, 147, 0.1));
+  box-shadow: 0 8px 20px rgba(30, 144, 255, 0.15);
+}
+
+.info-box h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  margin-bottom: 10px;
+  color: var(--cyan);
+}
+
+.info-box p {
+  color: var(--muted);
+  line-height: var(--leading);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .events-main {
+    padding: 100px 20px 40px;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-boxes {
+    grid-template-columns: 1fr;
+  }
+}

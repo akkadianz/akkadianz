@@ -1,0 +1,11 @@
+{
+  "name": "akkadianz-website",
+  "version": "0.0.1",
+  "private": true,
+  "description": "AKKADIANZ'26 - Static cyberpunk website",
+  "scripts": {
+    "dev": "npx http-server . -p 8080 -o index.html",
+    "start": "npx http-server . -p 8080",
+    "build": "echo 'Static site - no build needed'"
+  }
+}

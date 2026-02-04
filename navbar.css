@@ -1,0 +1,13 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transform: translateY(0);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  z-index: 1000;
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AKKADIANZ'26 — Loading</title>
+  <link rel="stylesheet" href="fonts.css" />
+  <style>
+    :root { --bg:#000; }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-family:var(--font-hero);}
+
+    /* Center stage for the outline logo */
+    .stage{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+
+    /* Outline SVG logo */
+    .logo-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block;z-index:10}
+    .logo-svg{width:70vw;max-width:900px;height:auto;display:block}
+    .logo-text{fill:none;stroke:#1e90ff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1200;stroke-dashoffset:1200;opacity:1}
+    .logo-sub{fill:none;stroke:#00d4ff;stroke-width:2;stroke-dasharray:600;stroke-dashoffset:600}
+
+    /* draw animation */
+    .draw .logo-text{animation:dash 1.6s ease forwards}
+    .draw .logo-sub{animation:dash 1.2s ease 0.25s forwards}
+    @keyframes dash{to{stroke-dashoffset:0}}
+
+    /* fly to corner */
+    .fly{transition:transform 0.9s cubic-bezier(.22,.9,.12,1),width 0.9s;transform-origin:0 0}
+    .fly.to-corner{transform:translate(-44vw,-44vh) scale(0.18) translateX(-10px) translateY(-10px)}
+
+    /* small badge at corner while still visible */
+    .corner-placeholder{position:absolute;left:28px;top:14px;width:46px;height:46px;pointer-events:none;z-index:20}
+
+    /* subtle scanlines during animation */
+    .scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,0.02) 0 2px, transparent 2px 4px);mix-blend-mode:screen;opacity:0.5}
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="corner-placeholder" aria-hidden="true"></div>
+
+    <div id="logo" class="logo-wrap" aria-hidden="true">
+      <!-- simple outlined SVG logo: text stroked to create an outline draw effect -->
+      <svg class="logo-svg" viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AKKADIANZ logo">
+        <text x="50%" y="55%" text-anchor="middle" font-size="120" font-weight="700" class="logo-text" style="font-family: var(--font-hero);">AKKADIANZ</text>
+        <text x="87%" y="85%" text-anchor="middle" font-size="48" font-weight="700" class="logo-sub" style="font-family: var(--font-hero);">·26</text>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    // play draw animation, then fly the logo to top-left and redirect
+    (function(){
+      const logo = document.getElementById('logo');
+      // start draw
+      requestAnimationFrame(()=> logo.classList.add('draw'));
+
+      // after drawing, fly to corner
+      setTimeout(()=>{
+        logo.classList.add('fly');
+        // compute a transform to move roughly to the navbar corner
+        // add a small delay then add the class that translates/scales
+        requestAnimationFrame(()=> logo.classList.add('to-corner'));
+      }, 1800);
+
+      // redirect shortly after the fly animation completes
+      setTimeout(()=>{ window.location.href = 'index.html'; }, 3000);
+    })();
+  </script>
+</body>
+</html>
