@@ -132,10 +132,20 @@
   font-style: normal;   /* ✅ MUST be normal */
   font-display: swap;
 }
+@font-face {
+  font-family: 'BoldsPixels';
+  src: url('./assets/BoldsPixels.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 
 
 /* Font roles using available custom fonts */
 :root {
+  --font-BoldsPixels: 'BoldsPixels', monospace;
   --font-hero: 'electro_wave_vol_2', 'Arial Black', sans-serif;
   --font-heading: 'pixel_font', 'Arial Black', sans-serif;
   --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
